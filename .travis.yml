@@ -15,8 +15,8 @@ deploy:
   region: 'us-east-1'
   app: 'Docker-CI-Flow'
   env: 'DockerCiFlow-env'
- # bucket_name: 'elasticbeanstalk-eu-west-2-094505317841'
- # bucket_path: 'CI Comparison Blog'
+  bucket_name: 'elasticbeanstalk-us-east-1-674818105408'
+  bucket_path: 'Sample'
  
  # script: "npm publish"
  # skip_cleanup: true
