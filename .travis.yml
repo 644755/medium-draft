@@ -1,20 +1,13 @@
 language: node_js
 node_js:
   - "12"
-services: 
-  - docker
 install: yarn
 cache: yarn
 before_deploy: "yarn fullbuild"
 script:
   - npm test
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
-stage: docker-deploy-image  
-      script: 
-        - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin 
-        - docker build -t 644755/sample .
-        - docker push 644755/sample
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: elasticbeanstalk
   access_key_id: $AWS_ACCESS_KEY_ID
