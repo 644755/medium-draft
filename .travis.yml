@@ -1,17 +1,32 @@
 language: node_js
 node_js:
   - "12"
+services: 
+  - docker
 install: yarn
 cache: yarn
 before_deploy: "yarn fullbuild"
 script:
   - npm test
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+#after_success:
+#  - bash <(curl -s https://codecov.io/bash)
+stage: docker-deploy-image  
+      script: 
+        - echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin 
+        - docker build -t 644755/sample .
+        - docker push 644755/sample
 deploy:
-  provider: npm
-  script: "npm publish"
-  skip_cleanup: true
-  email: "$NPM_EMAIL"
-  api_key: "$NPM_TOKEN"
+  provider: elasticbeanstalk
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  region: 'us-east-1'
+  app: 'Docker-CI-Flow'
+  env: 'DockerCiFlow-env'
+ # bucket_name: 'elasticbeanstalk-eu-west-2-094505317841'
+ # bucket_path: 'CI Comparison Blog'
+ 
+ # script: "npm publish"
+ # skip_cleanup: true
+ # email: "$NPM_EMAIL"
+ # api_key: "$NPM_TOKEN"
 
