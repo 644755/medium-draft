@@ -160,6 +160,8 @@ var options = {
   devServer: {
     historyApiFallback: false,
     noInfo: false,
+    compress: true,
+    public: 'http://dockerciflow-env.wjtebsq9k2.us-east-1.elasticbeanstalk.com' 
   },
 };
 
