@@ -27,9 +27,11 @@ jobs:
         region: 'us-east-1'
         app: 'Docker-CI-Flow'
         env: 'DockerCiFlow-env'
-
         bucket_name: 'elasticbeanstalk-us-east-1-674818105408'
         bucket_path: 'Sample'
+        on:
+          branch: master
+          
  
  # script: "npm publish"
  # skip_cleanup: true
