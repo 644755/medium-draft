@@ -161,6 +161,7 @@ var options = {
     historyApiFallback: false,
     noInfo: false,
     compress: true,
+    disableHostCheck: true,
     public: 'http://dockerciflow-env.wjtebsq9k2.us-east-1.elasticbeanstalk.com' 
   },
 };
